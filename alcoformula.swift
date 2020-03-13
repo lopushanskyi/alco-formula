@@ -12,7 +12,6 @@ struct Drink {
 }
 
 var currentDrink = Drink(title: "Wine", alcohol: 12, volume: 375)
-currentDrink.amountEthanol
 
 struct Human {
     let gender: String
@@ -26,7 +25,6 @@ struct Human {
 }
 
 let currentUser = Human(gender: "male", weight: 76, coefficient: 0.7)
-currentUser.weightCoef
 
 let bloodAlcoholIndex : Float = currentDrink.amountEthanol / currentUser.weightCoef
 let bloodAlcoholIndexFormatted = String(format: "%.2f", bloodAlcoholIndex)
