@@ -37,4 +37,4 @@ var soberTimeMinutes : Int = Int(soberTimeDuration) % 60
 
 print("You drunk \(currentDrink.volume) ml of \(currentDrink.title) (amount of ethanol \(currentDrink.amountEthanol) ml)")
 print("Now your blood alcohol index is \(bloodAlcoholIndexFormatted) ‰")
-print("You can drive in \(soberTimeHours)h \(soberTimeMinutes) min")
+print("You can drive in \(soberTimeHours) h \(soberTimeMinutes) min")
