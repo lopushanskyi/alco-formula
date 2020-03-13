@@ -1,11 +1,15 @@
-#Alco Tracker App v0.3
+#Alco Tracker App v0.4
 
 ml = int(input('How much did you drink? (ml): '))
-weight = int(input('Your weight is: '))
-gender = str(input('Your gender (male/female): '))
+weight = 76
 alcohol = str(input('Specify your drink (beer/wine/vodka): '))
-gendermale = weight * 0.7
-genderfemale = weight * 0.6
+#gendermale = weight * 0.7
+gender = str(input('What is your gender?: '))
+
+if gender == 'male':
+    gendermale = weight * 0.7
+else:
+    genderfemale = weight * 0.6
 
 if alcohol == 'beer':
     alcohol = 7
@@ -19,18 +23,12 @@ elif alcohol == 'vodka':
 else:
     print('Please restart app and specify your drink.')
 
-if (gender == 'male') or (gender == 'man'):
-    promille = ethanol / gendermale
-    sobertime = promille / 0.2
-    print('Your blood alcohol =', round(promille, 2), '‰')
-    print('You drunk', ethanol, 'ml clear ethanol')
-    print('You can drive approximately in', round(sobertime), 'hours')
+promille = ethanol / gendermale
+sobertime = promille / 0.2
 
-elif (gender == 'female') or (gender == 'woman'):
-    promille = ethanol / genderfemale
-    sobertime = promille / 0.2
-    print('Your blood alcohol =', round(promille, 2), '‰')
-    print('You drunk', ethanol, 'ml clear ethanol')
-    print('You can drive approximately in', round(sobertime), 'hours')
-else:
-    print('Please specify your gender.')
+print('Your blood alcohol =', round(promille, 2), '‰')
+print('You drunk', round(ethanol, 2), 'ml clear ethanol.')
+print('You can drive approximately in', round(sobertime), 'hours.')
+
+print('Monthly average consumption will be:', (ethanol * 30) / 1000, 'l of ethanol.')
+print('Yearly average consumption will be:', (ethanol * 365) / 1000, 'l of ethanol.')
