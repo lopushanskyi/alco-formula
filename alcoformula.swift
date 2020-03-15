@@ -29,8 +29,11 @@ var currentUser = Human(gender: "male", weight: 76, coefficient: 0.7)
 if currentUser.gender == "male" {
     currentUser.coefficient = 0.7
 }
-else {
+else if currentUser.gender == "female" {
     currentUser.coefficient = 0.6
+}
+else {
+    print("Please specify your gender")
 }
 
 let bloodAlcoholIndex : Float = currentDrink.amountEthanol / currentUser.weightCoef
@@ -42,4 +45,21 @@ var soberTimeMinutes : Int = Int(soberTimeDuration) % 60
 
 print("You drunk \(currentDrink.volume) ml of \(currentDrink.title) (amount of ethanol \(currentDrink.amountEthanol) ml)")
 print("Now your blood alcohol index is \(bloodAlcoholIndexFormatted) ‰")
+
+if bloodAlcoholIndex > 3.5 {
+    print("Great risk of coma or death")
+}
+else if bloodAlcoholIndex >= 2 && bloodAlcoholIndex <= 3.5 {
+    print("Deep sleep")
+}
+else if bloodAlcoholIndex >= 1 && bloodAlcoholIndex <= 2 {
+    print("Difficulty controlling the body, impaired balance and double vision.")
+}
+else if bloodAlcoholIndex >= 0.4 && bloodAlcoholIndex <= 1 {
+    print("Impairment of vision, speech and coordination.")
+}
+else if bloodAlcoholIndex >= 0.1 && bloodAlcoholIndex <= 0.4 {
+    print("Loss of certain inhibitions and overestimation of your own abilities.")
+}
+
 print("You can drive in \(soberTimeHours) h \(soberTimeMinutes) min")
