@@ -11,7 +11,7 @@ struct Drink {
     }
 }
 
-var currentDrink = Drink(title: "Wine", alcohol: 12, volume: 375)
+var currentDrink = Drink(title: "Wine", alcohol: 5, volume: 25)
 
 struct Human {
     let gender: String
@@ -61,5 +61,13 @@ else if bloodAlcoholIndex >= 0.4 && bloodAlcoholIndex <= 1 {
 else if bloodAlcoholIndex >= 0.1 && bloodAlcoholIndex <= 0.4 {
     print("Loss of certain inhibitions and overestimation of your own abilities.")
 }
+else {
+    print("You are sober!")
+}
 
-print("You can drive in \(soberTimeHours) h \(soberTimeMinutes) min")
+if soberTimeMinutes <= 5 {
+    print("You can drive now!")
+}
+else {
+    print("You can drive in \(soberTimeHours) h \(soberTimeMinutes) min")
+}
