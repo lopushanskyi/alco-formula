@@ -1,34 +1,64 @@
-#Alco Tracker App v0.4
+# Alcohol Tracker App v0.5
 
-ml = int(input('How much did you drink? (ml): '))
-weight = 76
-alcohol = str(input('Specify your drink (beer/wine/vodka): '))
-#gendermale = weight * 0.7
-gender = str(input('What is your gender?: '))
+# Declare all drinks
+all_drinks = {
+    'beer': 0.07,
+    'wine': 0.12,
+    'vodka': 0.4
+}
 
-if gender == 'male':
-    gendermale = weight * 0.7
-else:
-    genderfemale = weight * 0.6
+all_genders = {
+    'male': 0.7,
+    'female': 0.6
+}
 
-if alcohol == 'beer':
-    alcohol = 7
-    ethanol = ml * (alcohol / 100)
-elif alcohol == 'wine':
-    alcohol = 12
-    ethanol = ml * (alcohol / 100)
-elif alcohol == 'vodka':
-    alcohol = 40
-    ethanol = ml * (alcohol / 100)
-else:
-    print('Please restart app and specify your drink.')
+# Declare all others
+ethanol = []
+num_of_drinks = 0
+my_drinks = {}
+my_gender = {}
 
-promille = ethanol / gendermale
-sobertime = promille / 0.2
+# Questions for user
+q_gender = input('Specify your gender: ')
+q_weight = int(input('Your weight (kg): '))
+my_gender[q_gender] = q_weight
 
-print('Your blood alcohol =', round(promille, 2), '‰')
-print('You drunk', round(ethanol, 2), 'ml clear ethanol.')
-print('You can drive approximately in', round(sobertime), 'hours.')
+for key, value in my_gender.items():
+    gendercoef = my_gender[key] * all_genders[key]
 
-print('Monthly average consumption will be:', (ethanol * 30) / 1000, 'l of ethanol.')
-print('Yearly average consumption will be:', (ethanol * 365) / 1000, 'l of ethanol.')
+while True:
+    q_drink = input('Your drink: ')
+    q_volume = int(input('How much you drunk (ml)? '))
+    q_else = input('Anything else? (y/n) ')
+
+    my_drinks[q_drink] = q_volume
+
+    if q_else.lower() == 'n':
+        break
+
+    if q_else.lower() == 'y':
+        print('Please add another drink\n')
+        continue
+
+print('You drunk:')
+print('-' * 40)
+
+for key, value in my_drinks.items():
+    ethanol.append(value * all_drinks[key])
+    num_of_drinks += 1
+    print(f'{num_of_drinks}. {value} ml of {key}')
+
+print('-' * 40)
+
+sober_time = sum(ethanol) / gendercoef * 300
+sober_time_hours = sober_time // 60
+sober_time_minutes = sober_time % 60
+
+message = (
+    f'Total amount of alcohol = {sum(my_drinks.values())} ml\n'
+    f'(including {int(sum(ethanol))} ml of clear ethanol)\n'
+    f'Your Blood Alcohol Index is {(sum(ethanol) / gendercoef):.2f} ‰\n'
+    f'You can drive in {int(sober_time_hours)} h {int(sober_time_minutes)} min'
+)
+
+print(message)
