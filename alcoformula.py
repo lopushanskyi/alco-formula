@@ -1,5 +1,7 @@
 # Alcohol Tracker App v0.5
 
+from datetime import datetime, timedelta
+
 # Declare all drinks
 all_drinks = {
     'beer': 0.07,
@@ -53,12 +55,14 @@ print('-' * 40)
 sober_time = sum(ethanol) / gendercoef * 300
 sober_time_hours = sober_time // 60
 sober_time_minutes = sober_time % 60
+sober_time_to_drive = datetime.now() + timedelta(hours=sober_time_hours)
 
 message = (
     f'Total amount of alcohol = {sum(my_drinks.values())} ml\n'
     f'(including {int(sum(ethanol))} ml of clear ethanol)\n'
-    f'Your Blood Alcohol Index is {(sum(ethanol) / gendercoef):.2f} ‰\n'
-    f'You can drive in {int(sober_time_hours)} h {int(sober_time_minutes)} min'
+    f'Your Blood Alcohol Index is {(sum(ethanol) / gendercoef):.2f}‰\n'
+    f'You can drive in {int(sober_time_hours)} h {int(sober_time_minutes)} min on '
+    f'{sober_time_to_drive:%d %b %H:%M}'
 )
 
 print(message)
